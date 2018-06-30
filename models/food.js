@@ -8,6 +8,10 @@ const all = () => {
   )
 };
 
+const create = (attrs) => {
+  return database.returning(['id', 'name', 'calories']).insert(attrs)
+}
+
 module.exports = {
-  all
+  all, create
 }
