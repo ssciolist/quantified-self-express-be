@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
+
 const Food = require('../models/food')
-
-
 
 /* GET all foods page. */
 router.get('/', (req, res) => {
@@ -25,7 +24,5 @@ router.post('/', (req, res) => {
       res.status(201).json(data.rows[0])
     })
 });
-
-
 
 module.exports = router;
