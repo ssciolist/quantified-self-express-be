@@ -28,10 +28,20 @@ router.post('/', (req, res) => {
 /* Get a food. */
 router.get('/:id', (req, res) => {
   let id = req.params.id;
-  
+
   Food.find(id)
     .then((data) => {
       res.status(201).json(data.rows[0])
+    })
+});
+
+/* Delete a food. */
+router.delete('/:id', (req, res) => {
+  let id = req.params.id;
+
+  Food.destroy(id)
+    .then((data) => {
+      return res.status(204)
     })
 });
 

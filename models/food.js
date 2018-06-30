@@ -22,6 +22,13 @@ const find = (food_id) => {
   )
 }
 
+const destroy = (food_id) => {
+  let id = food_id;
+  return database.raw(
+    'DELETE FROM foods WHERE foods.id = ?', id
+  )
+}
+
 module.exports = {
-  all, create, find
+  all, create, find, destroy
 }
