@@ -9,7 +9,10 @@ const all = () => {
 };
 
 const create = (attrs) => {
-  return database.returning(['id', 'name', 'calories']).insert(attrs)
+  return database.raw(
+    'INSERT INTO foods (name, calories) VALUES (?, ?) RETURNING id, name, calories',
+    [attrs.name, attrs.calories]
+  )
 }
 
 module.exports = {

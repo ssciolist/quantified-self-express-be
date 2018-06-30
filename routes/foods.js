@@ -17,15 +17,15 @@ router.get('/', (req, res) => {
 
 /* Post a food. */
 router.post('/', (req, res) => {
-  let food = request.body.food
+  let food_attrs = JSON.parse(req.body.food)
 
-  if (!message) {
-    return res.status(400).sent({ error: "No food property provided!"})
+  if (!food_attrs) {
+    return res.status(422).send({ error: `${typeof food_attrs}`})
   }
 
-  Food.create(food)
+  Food.create(food_attrs)
     .then((data) => {
-      res.status(201).json(data.rows)
+      res.status(201).json(data.rows[0])
     })
 });
 
