@@ -28,7 +28,6 @@ const update = (food_id, attrs) => {
     'UPDATE foods SET name = ?, calories = ? WHERE id = ? RETURNING *',
     [attrs.name, attrs.calories, id]
   );
-  database.raw(, [name, calories, id])
 }
 
 const destroy = (food_id) => {

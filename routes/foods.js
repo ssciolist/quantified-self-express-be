@@ -39,13 +39,19 @@ router.get('/:id', (req, res) => {
     })
     .catch(err => {
       return res.sendStatus(404);
-    }
+    })
 });
 
 /* Update a food. */
 router.patch('/:id', (req, res, next) => {
+
   let id = req.params.id;
   let food_attrs = req.body.food;
+
+
+  if (!food_attrs) {
+    return res.status(422).send({ error: `No food property provided ${food_attrs}`})
+  }
 
   Food.update(id, food_attrs)
     .then((data) => {
@@ -53,7 +59,7 @@ router.patch('/:id', (req, res, next) => {
     })
     .catch(err => {
       return res.sendStatus(404);
-    }
+    })
 });
 
 /* Delete a food. */
