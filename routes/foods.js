@@ -13,10 +13,10 @@ router.get('/', (req, res) => {
 
 /* Post a food. */
 router.post('/', (req, res) => {
-  let food_attrs = JSON.parse(req.body.food)
+  let food_attrs = req.body.food
 
   if (!food_attrs) {
-    return res.status(422).send({ error: "No food property provided"})
+    return res.status(422).send({ error: `No food property provided ${req.body.food}`})
   }
 
   Food.create(food_attrs)
@@ -24,5 +24,16 @@ router.post('/', (req, res) => {
       res.status(201).json(data.rows[0])
     })
 });
+
+/* Get a food. */
+router.get('/:id', (req, res) => {
+  let id = req.params.id;
+  
+  Food.find(id)
+    .then((data) => {
+      res.status(201).json(data.rows[0])
+    })
+});
+
 
 module.exports = router;

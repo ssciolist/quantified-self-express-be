@@ -10,11 +10,18 @@ const all = () => {
 
 const create = (attrs) => {
   return database.raw(
-    'INSERT INTO foods (name, calories) VALUES (?, ?) RETURNING id, name, calories',
+    'INSERT INTO foods (name, calories) VALUES (?, ?) RETURNING id, name, calories;',
     [attrs.name, attrs.calories]
   )
 }
 
+const find = (food_id) => {
+  let id = food_id;
+  return database.raw(
+    'SELECT foods.id, foods.name, foods.calories FROM foods WHERE foods.id = ?', id
+  )
+}
+
 module.exports = {
-  all, create
+  all, create, find
 }
