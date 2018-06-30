@@ -43,13 +43,17 @@ router.get('/:id', (req, res) => {
 });
 
 /* Update a food. */
-router.patch('/:id', (req, res) => {
+router.patch('/:id', (req, res, next) => {
   let id = req.params.id;
+  let food_attrs = req.body.food;
 
-  Food.destroy(id)
+  Food.update(id)
     .then((data) => {
-      return res.status(204)
+      res.status(201).json(data.rows[0])
     })
+    .catch(err => {
+      return res.sendStatus(404);
+    }
 });
 
 /* Delete a food. */
