@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
   let food_attrs = JSON.parse(req.body.food)
 
   if (!food_attrs) {
-    return res.status(422).send({ error: `${typeof food_attrs}`})
+    return res.status(422).send({ error: "No food property provided"})
   }
 
   Food.create(food_attrs)
