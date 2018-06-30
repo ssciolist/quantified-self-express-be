@@ -47,7 +47,7 @@ router.patch('/:id', (req, res, next) => {
   let id = req.params.id;
   let food_attrs = req.body.food;
 
-  Food.update(id)
+  Food.update(id, food_attrs)
     .then((data) => {
       res.status(201).json(data.rows[0])
     })
