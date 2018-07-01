@@ -43,7 +43,7 @@ router.get('/:id', (req, res) => {
 });
 
 /* Update a food. */
-router.patch('/:id', (req, res, next) => {
+router.put('/:id', (req, res, next) => {
 
   let id = req.params.id;
   let food_attrs = req.body.food;
