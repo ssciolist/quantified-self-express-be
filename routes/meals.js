@@ -3,6 +3,7 @@ const router = express.Router();
 pry = require('pryjs')
 
 const Meal = require('../models/meal')
+const MealFood = require('../models/meal_food')
 
 /* GET all meals page. */
 router.get('/', (req, res) => {
@@ -28,7 +29,7 @@ router.get('/:id', (req, res) => {
 /* Post one meal food */
 router.post('/:id/foods/:food_id', (req, res) => {
   let id = req.params.id;
-  eval(pry.it)
+  let food_id = req.params.food_id;
 
 
 });
@@ -36,6 +37,7 @@ router.post('/:id/foods/:food_id', (req, res) => {
 /* Delete one meal food */
 router.post('/:id/foods/:food_id', (req, res) => {
   let id = req.params.id;
+  let food_id = req.params.food_id;
 
 
 });
