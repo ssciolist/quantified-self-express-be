@@ -3,7 +3,7 @@
 module.exports = {
   development: {
     client: 'pg',
-    connection:'postgres://localhost/secrets',
+    connection:'postgres://localhost/qsexpress',
     migrations: {
       directory: './db/migrations'
     },
@@ -15,7 +15,7 @@ module.exports = {
 
   test: {
     client: 'pg',
-    connection:'postgres://localhost/secrets_test',
+    connection:'postgres://localhost/qsexpress_test',
     migrations: {
       directory: './db/migrations'
     },

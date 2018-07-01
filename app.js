@@ -8,6 +8,7 @@ var sassMiddleware = require('node-sass-middleware');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var foodsRouter = require('./routes/foods');
+var mealsRouter = require('./routes/meals');
 
 var cors = require('cors')
 
@@ -34,6 +35,7 @@ app.use(cors())
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/v1/foods', foodsRouter);
+app.use('/api/v1/meals', mealsRouter);
 
 
 // catch 404 and forward to error handler
