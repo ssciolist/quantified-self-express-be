@@ -7,7 +7,7 @@ const Meal = require('../models/meal')
 router.get('/', (req, res) => {
   Meal.all()
     .then((data) => {
-      res.status(201).send(data)
+      res.status(201).send(data.rows)
     })
 });
 
