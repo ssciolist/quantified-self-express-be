@@ -11,4 +11,16 @@ router.get('/', (req, res) => {
     })
 });
 
+router.get('/:id', (req, res) => {
+  let id = req.params.id;
+
+  Meal.find(id)
+    .then((data) => {
+      res.status(201).send(data.rows[0])
+    })
+    .catch(err => {
+      return res.sendStatus(404);
+    })
+});
+
 module.exports = router;
