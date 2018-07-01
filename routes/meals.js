@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 pry = require('pryjs')
-
 const Meal = require('../models/meal')
 const MealFood = require('../models/meal_food')
 
@@ -33,7 +32,7 @@ router.post('/:id/foods/:food_id', (req, res) => {
 
   MealFood.create(id, food_id)
     .then((data) => {
-      res.status(201).send()
+      res.status(201).send({"message": `Successfully added FOODNAME to MEALNAME`})
     })
     .catch(err => {
       return res.sendStatus(404);
@@ -47,7 +46,7 @@ router.delete('/:id/foods/:food_id', (req, res) => {
 
   MealFood.destroy(id, food_id)
     .then((data) => {
-      res.status(201).send()
+      res.status(201).send({"message": `Successfully removed FOODNAME from MEALNAME`})
     })
     .catch(err => {
       return res.sendStatus(404);
