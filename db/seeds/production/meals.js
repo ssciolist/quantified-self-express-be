@@ -4,16 +4,16 @@ exports.seed = function(knex, Promise) {
   return knex.raw('TRUNCATE meals RESTART IDENTITY CASCADE')
     .then(function() {
       return Promise.all({
-        knew.raw(
+        knex.raw(
           'INSERT INTO meals (name) VALUES (?)', ["Breakfast"]
         ),
-        knew.raw(
+        knex.raw(
           'INSERT INTO meals (name) VALUES (?)', ["Snack"]
         ),
-        knew.raw(
+        knex.raw(
           'INSERT INTO meals (name) VALUES (?)', ["Lunch"]
         ),
-        knew.raw(
+        knex.raw(
           'INSERT INTO meals (name) VALUES (?)', ["Dinner"]
         )
       })
