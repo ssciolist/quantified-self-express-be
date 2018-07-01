@@ -31,15 +31,27 @@ router.post('/:id/foods/:food_id', (req, res) => {
   let id = req.params.id;
   let food_id = req.params.food_id;
 
-
+  MealFood.create(id, food_id)
+    .then((data) => {
+      res.status(201).send()
+    })
+    .catch(err => {
+      return res.sendStatus(404);
+    })
 });
 
 /* Delete one meal food */
-router.post('/:id/foods/:food_id', (req, res) => {
+router.delete('/:id/foods/:food_id', (req, res) => {
   let id = req.params.id;
   let food_id = req.params.food_id;
 
-
+  MealFood.destroy(id, food_id)
+    .then((data) => {
+      res.status(201).send()
+    })
+    .catch(err => {
+      return res.sendStatus(404);
+    })
 });
 
 module.exports = router;
