@@ -10,3 +10,4 @@ exports.seed = function(knex, Promise) {
         knex.raw('INSERT INTO meals (name) VALUES ?', "Dinner")
       ])
     })
+  }
