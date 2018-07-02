@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-pry = require('pryjs')
+
 const Meal = require('../models/meal')
 const MealFood = require('../models/meal_food')
 
