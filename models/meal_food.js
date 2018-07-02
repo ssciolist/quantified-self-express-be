@@ -6,7 +6,7 @@ pry = require('pryjs')
 const create = (meal_id, food_id) => {
   return database('meal_foods').insert({meal_id: meal_id, food_id: food_id}).returning('*')
     .then((data) => {
-      return message(1, 2)
+      return message(meal_id, food_id)
     })
 };
 
@@ -16,7 +16,8 @@ const destroy = (meal_id, food_id) => {
 
 const message = (meal_id, food_id) => {
   return database.raw(
-    "SELECT f.name AS food_name, m.name AS meal_name FROM meal_foods INNER JOIN meals m ON m.id = meal_foods.meal_id INNER JOIN foods f ON f.id = meal_foods.id WHERE m.id = 2 AND f.id = 1;"
+    "SELECT f.name AS food_name, m.name AS meal_name FROM meal_foods INNER JOIN meals m ON m.id = meal_foods.meal_id INNER JOIN foods f ON f.id = meal_foods.id WHERE m.id = ? AND f.id = ?;",
+    [meal_id, food_id]
   )
   .then((data) => {
     f_name = data.rows[0].food_name
