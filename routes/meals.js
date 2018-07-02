@@ -32,7 +32,7 @@ router.post('/:id/foods/:food_id', (req, res) => {
 
   MealFood.create(id, food_id)
     .then((data) => {
-      res.status(201).send({"message": `Successfully added FOODNAME to MEALNAME`})
+      res.status(201).send({"message": `Successfully added ${data} to `})
     })
     .catch(err => {
       return res.sendStatus(404);
