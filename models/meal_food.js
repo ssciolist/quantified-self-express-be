@@ -16,7 +16,7 @@ const destroy = (meal_id, food_id) => {
 
 const message = (meal_id, food_id) => {
   return database.raw(
-    "SELECT f.name AS food_name, m.name AS meal_name FROM meal_foods INNER JOIN meals m ON m.id = meal_foods.meal_id INNER JOIN foods f ON f.id = meal_foods.id WHERE m.id = ? AND f.id = ?;",
+    "SELECT foods.name AS food_name, meals.name AS meal_name FROM meal_foods INNER JOIN meals on meals.id = meal_foods.meal_id INNER JOIN foods ON foods.id = meal_foods.food_id WHERE meal_foods.meal_id = ? AND meal_foods.food_id = ?;",
     [meal_id, food_id]
   )
   .then((data) => {
