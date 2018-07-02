@@ -19,8 +19,9 @@ const message = (meal_id, food_id) => {
     "SELECT f.name AS food_name, m.name AS meal_name FROM meal_foods INNER JOIN meals m ON m.id = meal_foods.meal_id INNER JOIN foods f ON f.id = meal_foods.id WHERE m.id = 2 AND f.id = 1;"
   )
   .then((data) => {
-    food_name = data.rows[0].food_name
-    return food_name
+    f_name = data.rows[0].food_name
+    m_name = data.rows[0].meal_name
+    return {food_name: f_name, meal_name: m_name}
   })
 };
 

@@ -32,7 +32,7 @@ router.post('/:id/foods/:food_id', (req, res) => {
 
   MealFood.create(id, food_id)
     .then((data) => {
-      res.status(201).send({"message": `Successfully added ${data} to `})
+      res.status(201).send({"message": `Successfully added ${data.food_name} to ${data.meal_name}`})
     })
     .catch(err => {
       return res.sendStatus(404);
@@ -46,7 +46,7 @@ router.delete('/:id/foods/:food_id', (req, res) => {
 
   MealFood.destroy(id, food_id)
     .then((data) => {
-      res.status(201).send({"message": `Successfully removed FOODNAME from MEALNAME`})
+      res.status(201).send({"message": `Successfully removed ${data.food_name} from ${data.meal_name}`})
     })
     .catch(err => {
       return res.sendStatus(404);
