@@ -7,8 +7,8 @@ var sassMiddleware = require('node-sass-middleware');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var foodsRouter = require('./routes/foods');
-var mealsRouter = require('./routes/meals');
+var foodsRouter = require('./routes/api/v1/foods');
+var mealsRouter = require('./routes/api/v1/meals');
 
 var cors = require('cors')
 
