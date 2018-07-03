@@ -60,4 +60,49 @@ describe('routes : foods', () => {
     });
   });
 
+  describe('POST /api/v1/foods', () => {
+    it('should respond with the created food', (done) => {
+      chai.request(app)
+      .post('/api/v1/foods', )
+      .send({ 'food': { 'name': 'Frozen banana smoothie', 'calories': 500} })
+      .end((err, res) => {
+      expect(res).to.have.status(201);
+      expect(res).to.be.json;
+      expect(res.body).to.have.property('name')
+      expect(res.body).to.have.property('calories')
+      expect(res.body.name).to.equal('Frozen banana smoothie')
+      expect(res.body.calories).to.equal(500)
+      });
+      done();
+    });
+  });
+
+  describe('PUT /api/v1/foods', () => {
+    it('should respond with the updated food', (done) => {
+      chai.request(app)
+      .put('/api/v1/foods/1', )
+      .send({ 'food': { 'name': 'Frozen banana smoothie', 'calories': 500} })
+      .end((err, res) => {
+      expect(res).to.have.status(201);
+      expect(res).to.be.json;
+      expect(res.body).to.have.property('name')
+      expect(res.body).to.have.property('calories')
+      expect(res.body.name).to.equal('Frozen banana smoothie')
+      expect(res.body.calories).to.equal(500)
+      });
+      done();
+    });
+  });
+
+  describe('DELETE /api/v1/foods', () => {
+    it('should respond with the updated food', (done) => {
+      chai.request(app)
+      .delete('/api/v1/foods/1', )
+      .end((err, res) => {
+      expect(res).to.have.status(204);
+      });
+      done();
+    });
+  });
+
 });
