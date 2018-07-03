@@ -53,7 +53,7 @@ describe('routes : meals', () => {
       expect(res).to.be.json;
       expect(res.body).to.have.property('name')
       expect(res.body).to.have.property('foods')
-      expect(res.body.name).to.equal('Breakfast')
+      expect(res.body.name).to.equal('Snack')
       expect(res.body.foods).to.deep.equal([])
       });
       done();
