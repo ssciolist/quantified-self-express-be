@@ -33,9 +33,30 @@ describe('routes : foods', () => {
       chai.request(app)
       .get('/api/v1/foods')
       .end((err, res) => {
-        should.not.exist(err)
-        done()
+      expect(res).to.have.status(201);
+      expect(res).to.be.json;
+      expect(res.body[0]).to.have.property('name')
+      expect(res.body[0]).to.have.property('calories')
+      expect(res.body[0].name).to.equal('Apple')
+      expect(res.body[0].calories).to.equal(42)
       });
+      done();
+    });
+  });
+
+  describe('GET /api/v1/foods/1', () => {
+    it('should respond with one food', (done) => {
+      chai.request(app)
+      .get('/api/v1/foods/1')
+      .end((err, res) => {
+      expect(res).to.have.status(201);
+      expect(res).to.be.json;
+      expect(res.body).to.have.property('name')
+      expect(res.body).to.have.property('calories')
+      expect(res.body.name).to.equal('Apple')
+      expect(res.body.calories).to.equal(42)
+      });
+      done();
     });
   });
 
