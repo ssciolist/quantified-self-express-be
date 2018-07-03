@@ -10,7 +10,7 @@ const should = chai.should
 const expect = chai.expect
 chai.use(chaiHttp)
 
-describe('routes : foods', () => {
+describe('routes : api/v1/foods', () => {
   beforeEach((done) => {
     database.migrate.latest()
     .then(() => {

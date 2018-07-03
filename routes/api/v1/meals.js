@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const Meal = require('../models/meal')
-const MealFood = require('../models/meal_food')
+const Meal = require('../../../models/meal')
+const MealFood = require('../../../models/meal_food')
 
 /* GET all meals page. */
 router.get('/', (req, res) => {
