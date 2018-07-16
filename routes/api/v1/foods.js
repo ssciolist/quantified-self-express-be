@@ -103,10 +103,13 @@ router.get('/:id/recipes', (req, res) => {
     return res.status(422).send({ error: `No id provided`})
   }
 
-  Yummly.getRecipes('Banana')
-  .then((data) => {
-    return res.json({recipes: data})
-  })
+  Food.name(id)
+    .then((data) => {
+      Yummly.getRecipes(data.rows[0].name)
+      .then((data) => {
+        return res.json({recipes: data})
+      })
+    })
 
 });
 

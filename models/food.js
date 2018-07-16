@@ -22,6 +22,13 @@ const find = (food_id) => {
   );
 }
 
+const name = (food_id) => {
+  let id = food_id;
+  return database.raw(
+    'SELECT foods.name FROM foods WHERE foods.id = ?', id
+  );
+}
+
 const update = (food_id, attrs) => {
   let id = food_id;
   return database.raw(
@@ -38,5 +45,5 @@ const destroy = (food_id) => {
 }
 
 module.exports = {
-  all, create, find, update, destroy
+  all, create, find, update, destroy, name
 }
