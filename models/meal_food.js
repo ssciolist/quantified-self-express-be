@@ -18,9 +18,9 @@ const destroy = (meal_id, food_id) => {
 
 const favorites = () => {
   return database.raw(
-    `SELECT DISTINCT(sub.timeseaten) as timeseaten, array_agg(jsonb_build_object('name', foods.name, 'calories', foods.calories, 'mealsWhenEaten', meals.name)) as foods
-    FROM (SELECT DISTINCT COUNT(food_id) as timesEaten, food_id FROM meal_foods GROUP BY meal_foods.food_id) sub, foods, meals, meal_foods
-    WHERE foods.id = sub.food_id AND meal_foods.meal_id = meals.id
+    `SELECT DISTINCT(sub.timeseaten) as timeseaten, array_agg(jsonb_build_object('name', foods.name, 'calories', foods.calories, 'mealWhenEaten', sub.meals)) as foods
+    FROM (SELECT DISTINCT COUNT(food_id) as timesEaten, food_id, array_agg(DISTINCT(meals.name)) as meals FROM meal_foods, meals WHERE meals.id = meal_foods.meal_id GROUP BY meal_foods.food_id) sub, foods
+    WHERE foods.id = sub.food_id
     GROUP BY sub.timeseaten
     ORDER BY sub.timeseaten DESC;`
   );
