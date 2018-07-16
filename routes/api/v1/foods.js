@@ -75,5 +75,22 @@ router.delete('/:id', (req, res) => {
     })
 });
 
+/* Get recipes for a food. */
+router.get('/:id/recipes', (req, res) => {
+  let id = req.params.id;
+
+  if (!id) {
+    return res.status(422).send({ error: `No id provided`})
+  }
+
+  // Food.find(id)
+  //   .then((data) => {
+  //     res.status(201).json(data.rows[0])
+  //   })
+  //   .catch(err => {
+  //     return res.sendStatus(404);
+  //   })
+});
+
 
 module.exports = router;
