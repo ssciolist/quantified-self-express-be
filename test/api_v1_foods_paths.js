@@ -63,7 +63,7 @@ describe('routes : foods', () => {
   describe('POST /api/v1/foods', () => {
     it('should respond with the created food', (done) => {
       chai.request(app)
-      .post('/api/v1/foods', )
+      .post('/api/v1/foods' )
       .send({ 'food': { 'name': 'Frozen banana smoothie', 'calories': 500} })
       .end((err, res) => {
       expect(res).to.have.status(201);
@@ -80,7 +80,7 @@ describe('routes : foods', () => {
   describe('PUT /api/v1/foods', () => {
     it('should respond with the updated food', (done) => {
       chai.request(app)
-      .put('/api/v1/foods/1', )
+      .put('/api/v1/foods/1' )
       .send({ 'food': { 'name': 'Frozen banana smoothie', 'calories': 500} })
       .end((err, res) => {
       expect(res).to.have.status(201);
@@ -97,7 +97,7 @@ describe('routes : foods', () => {
   describe('DELETE /api/v1/foods', () => {
     it('should respond with the updated food', (done) => {
       chai.request(app)
-      .delete('/api/v1/foods/1', )
+      .delete('/api/v1/foods/1' )
       .end((err, res) => {
       expect(res).to.have.status(204);
       });
