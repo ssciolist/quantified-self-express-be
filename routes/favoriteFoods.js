@@ -7,7 +7,10 @@ const MealFood = require('../models/meal_food')
 
 /* GET favorite foods */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  MealFood.favorites()
+    .then((data) => {
+      res.status(201).send(data.rows)
+    })
 });
 
 module.exports = router;
