@@ -3,6 +3,26 @@ const router = express.Router();
 
 const Food = require('../../../models/food')
 
+/* configure Yummly api call */
+require("isomorphic-fetch")
+const APP_ID = process.env.APP_ID;
+const APP_KEY = process.env.APP_KEY;
+const Yummly = {};
+
+Yummly.getRecipes = (search) => {
+  return fetch(`http://api.yummly.com/v1/api/recipes?_app_id=${APP_ID}&_app_key=${APP_KEY}&q=${search}&maxResult=10`)
+  .then((response) => response.json())
+  .then((rawResult) => {
+    return rawResult['matches'].map((recipe) => {
+      return {name: recipe.recipeName, url: `http://www.yummly.com/recipe/${recipe.id}`}
+    })
+  })
+  }
+
+
+
+
+
 /* GET all foods page. */
 router.get('/', (req, res) => {
   Food.all()
@@ -73,6 +93,24 @@ router.delete('/:id', (req, res) => {
     .catch(err => {
       return res.sendStatus(404);
     })
+});
+
+/* Get recipes for a food. */
+router.get('/:id/recipes', (req, res) => {
+  let id = req.params.id;
+
+  if (!id) {
+    return res.status(422).send({ error: `No id provided`})
+  }
+
+  Food.name(id)
+    .then((data) => {
+      Yummly.getRecipes(data.rows[0].name)
+      .then((data) => {
+        return res.json({recipes: data})
+      })
+    })
+
 });
 
 
