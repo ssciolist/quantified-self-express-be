@@ -16,6 +16,16 @@ const destroy = (meal_id, food_id) => {
   })
 };
 
+const favorites = () => {
+  return database.raw(
+    `SELECT DISTINCT(sub.timeseaten) as timeseaten, array_agg(jsonb_build_object('name', foods.name, 'calories', foods.calories)) as foods
+    FROM (SELECT DISTINCT COUNT(food_id) as timesEaten, food_id FROM meal_foods GROUP BY meal_foods.food_id) sub, foods
+    WHERE foods.id = sub.food_id
+    GROUP BY sub.timeseaten
+    ORDER BY sub.timeseaten DESC;`
+  );
+};
+
 const message = (meal_id, food_id) => {
   return database.raw(
     "SELECT foods.name AS food_name, meals.name AS meal_name FROM foods, meals WHERE meals.id = ? AND foods.id = ?;",
@@ -29,5 +39,5 @@ const message = (meal_id, food_id) => {
 };
 
 module.exports = {
-  create, destroy, message
+  create, destroy, message, favorites
 }
