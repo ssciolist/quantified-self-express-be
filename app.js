@@ -6,9 +6,9 @@ var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var foodsRouter = require('./routes/foods');
 var mealsRouter = require('./routes/meals');
+var favoriteFoodsRouter = require('./routes/favoriteFoods');
 
 var cors = require('cors')
 
@@ -34,9 +34,9 @@ app.use(cors())
 app.options('*', cors())
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/api/v1/foods', foodsRouter);
 app.use('/api/v1/meals', mealsRouter);
+app.use('/api/v1/favorite_foods', favoriteFoodsRouter);
 
 
 // catch 404 and forward to error handler
