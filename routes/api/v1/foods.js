@@ -13,25 +13,14 @@ Yummly.getRecipes = (search) => {
   return fetch(`http://api.yummly.com/v1/api/recipes?_app_id=${APP_ID}&_app_key=${APP_KEY}&q=${search}&maxResult=10`)
   .then((response) => response.json())
   .then((rawResult) => {
-    let recipeIds = []
-
-    for(i=0; i < 10; i++)  {
-      recipeIds.push(rawResult['matches'][i]['id'])
-    }
-
-    for(i=0; i < recipeIds.length; i++) {
-      Yummly.getRecipeUrlName(recipeIds[i])
-    }
+    return rawResult['matches'].map((recipe) => {
+      return {name: recipe.recipeName, url: `http://www.yummly.com/recipe/${recipe.id}`}
+    })
   })
-}
+  }
 
-Yummly.getRecipeUrlName = (recipeId) => {
-  return fetch(`http://api.yummly.com/v1/api/recipe/${recipeId}?_app_id=${APP_ID}&_app_key=${APP_KEY}`)
-  .then((response) => response.json())
-  .then((rawResult) => {
-    return { name: rawResult['name'], url: rawResult['source']['sourceRecipeUrl'] }
-  })
-}
+
+
 
 
 /* GET all foods page. */
@@ -116,7 +105,7 @@ router.get('/:id/recipes', (req, res) => {
 
   Yummly.getRecipes('Banana')
   .then((data) => {
-    return res.json(data)
+    return res.json({recipes: data})
   })
 
 });
