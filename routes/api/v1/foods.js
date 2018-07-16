@@ -3,6 +3,10 @@ const router = express.Router();
 
 const Food = require('../../../models/food')
 
+/* configure Yummly api call */
+const APP_ID = ;
+const APP_KEY = ;
+
 /* GET all foods page. */
 router.get('/', (req, res) => {
   Food.all()
