@@ -12,7 +12,19 @@ const Yummly = {};
 Yummly.getRecipes = (search) => {
   return fetch(`http://api.yummly.com/v1/api/recipes?_app_id=${APP_ID}&_app_key=${APP_KEY}&q=${search}&maxResult=10`)
   .then((response) => response.json())
-  .then((rawDiscussions) => {
+  .then((rawResult) => {
+    let recipeIds = []
+
+    while (i < 11) {
+      recipeIds.push(rawResult['matches'][i]['id'])
+    }
+  })
+}
+
+Yummly.getRecipeUrlName = (recipeId) => {
+  return fetch(`http://api.yummly.com/v1/api/recipe/recipe-id=${recipeId}_app_id=${APP_ID}&_app_key=${APP_KEY}`)
+  .then((response) => response.json())
+  .then((rawResult) => {
     pry = require('pryjs')
     eval(pry.it)
   })
@@ -99,7 +111,7 @@ router.get('/:id/recipes', (req, res) => {
     return res.status(422).send({ error: `No id provided`})
   }
 
-  Yummly.getRecipes("banana")
+  Yummly.getRecipeUrlName('Banana-Matcha-Smoothie-2443695')
 
 });
 
