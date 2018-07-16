@@ -4,8 +4,20 @@ const router = express.Router();
 const Food = require('../../../models/food')
 
 /* configure Yummly api call */
-const APP_ID = ;
-const APP_KEY = ;
+require("isomorphic-fetch")
+const APP_ID = process.env.APP_ID;
+const APP_KEY = process.env.APP_KEY;
+const Yummly = {};
+
+Yummly.getRecipes = (search) => {
+  return fetch(`http://api.yummly.com/v1/api/recipes?_app_id=${APP_ID}&_app_key=${APP_KEY}&q=${search}&maxResult=10`)
+  .then((data) => {
+    pry = require('pryjs')
+    eval(pry.it)
+
+  })
+}
+
 
 /* GET all foods page. */
 router.get('/', (req, res) => {
@@ -87,13 +99,11 @@ router.get('/:id/recipes', (req, res) => {
     return res.status(422).send({ error: `No id provided`})
   }
 
-  // Food.find(id)
-  //   .then((data) => {
-  //     res.status(201).json(data.rows[0])
-  //   })
-  //   .catch(err => {
-  //     return res.sendStatus(404);
-  //   })
+  Yummly.getRecipes("banana")
+    .then((data) => {
+
+    })
+
 });
 
 
