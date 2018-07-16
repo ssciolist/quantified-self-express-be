@@ -11,10 +11,10 @@ const Yummly = {};
 
 Yummly.getRecipes = (search) => {
   return fetch(`http://api.yummly.com/v1/api/recipes?_app_id=${APP_ID}&_app_key=${APP_KEY}&q=${search}&maxResult=10`)
-  .then((data) => {
+  .then((response) => response.json())
+  .then((rawDiscussions) => {
     pry = require('pryjs')
     eval(pry.it)
-
   })
 }
 
@@ -100,9 +100,6 @@ router.get('/:id/recipes', (req, res) => {
   }
 
   Yummly.getRecipes("banana")
-    .then((data) => {
-
-    })
 
 });
 
